@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {BrowserRouter, Routes, Route, Outlet, Navigate} from 'react-router-dom';
 import App from './App';
+import Layout from "./components/Layout";
 import Home from './components/Home';
 import ErrorPage from "./components/ErrorPage";
 import reportWebVitals from './reportWebVitals';
@@ -10,14 +11,17 @@ import 'bootstrap/dist/js/bootstrap';
 
 const router = (
     <BrowserRouter>
-        <Routes>
-            <Route path="/" element={<App />} errorElement={<ErrorPage />}>
-                <Route index element={<Home />} />
-                {/*<Route path="/login" element={<Login />} />*/}
-                {/* Catch-all route for unmatched routes */}
-                <Route path="*" element={<ErrorPage />} /> {/* Catch-all route for unmatched routes */}
-            </Route>
-        </Routes>
+        <Layout>
+            <Routes>
+                <Route path="/" element={<App />} errorElement={<ErrorPage />}>
+                    <Route index element={<Home />} />
+                    <Route path="/home" element={<Home />} />
+                    {/*<Route path="/login" element={<Login />} />*/}
+                    {/* Catch-all route for unmatched routes */}
+                    <Route path="*" element={<ErrorPage />} /> {/* Catch-all route for unmatched routes */}
+                </Route>
+            </Routes>
+        </Layout>
     </BrowserRouter>
 );
 
