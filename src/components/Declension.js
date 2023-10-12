@@ -25,12 +25,10 @@ const Declension = () => {
         <div className="page-content">
             <h1>Declension</h1>
             <br />
-            <h3>Enter a word to decline</h3>
-            <br />
             <form>
                 <div className="form-group">
-                    <label htmlFor="inputDeclension1">Word</label>
-                    <input type="word" className="form-control" id="inputDeclension1" aria-describedby="declensionHelp" placeholder="Enter a word" />
+                    <label htmlFor="inputDeclension1">Enter a word to decline</label>
+                    <input type="word" className="form-control" id="inputDeclension1" aria-describedby="declensionHelp" placeholder="śniadanie" />
                     <small id="declensionHelp" className="form-text text-muted">The entered word must be in the nominative case.</small>
                 </div>
                 <button type="submit" className="btn btn-outline-danger" onClick={handleSubmit}>Decline</button>
