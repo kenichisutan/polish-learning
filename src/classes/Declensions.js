@@ -75,10 +75,31 @@ class declension {
         // ---------------VOCATIVE----------------
         this.singular.vocative = word.substring(0, word.length - 1) + 'o';
         // ---------------GENITIVE----------------
-        this.singular.genitive = word.substring(0, word.length - 1) + 'y';
+        // --------Mrówka -> Mrówki--------
+        // if ends with k consonant, switch to i
+        if(word[word.length - 2] === 'k') {
+            this.singular.genitive = word.substring(0, word.length - 1) + 'i';
+        }
+        else {
+            this.singular.genitive = word.substring(0, word.length - 1) + 'y';
+        }
         // ---------------DATIVE, LOC.----------------
-        this.singular.dative =
-            this.singular.locative = word.substring(0, word.length - 1) + 'ie';
+        // -------- Kobieta -> Kobiecie --------
+        // if ends with a t consonant, switch to cie
+        if(word[word.length - 2] === 't') {
+            this.singular.dative =
+                this.singular.locative = word.substring(0, word.length - 2) + 'cie';
+        }
+        // -------- Mrówka -> Mrówce --------
+        // if ends with a k consonant, switch to ce
+        else if(word[word.length - 2] === 'k') {
+            this.singular.dative =
+                this.singular.locative = word.substring(0, word.length - 2) + 'ce';
+        }
+        else {
+            this.singular.dative =
+                this.singular.locative = word.substring(0, word.length - 1) + 'ie';
+        }
         // ---------------INSTRUMENTAL----------------
         this.singular.instrumental = word.substring(0, word.length - 1) + 'ą';
     }
@@ -88,11 +109,56 @@ class declension {
     declineFemininePluralEndingA(word) {
         // ---------------PLURAL A----------------
         // ---------------NOMINATIVE, ACC., VOC.----------------
-        this.plural.nominative =
-            this.plural.accusative =
-                this.plural.vocative = word.substring(0, word.length - 1) + 'y';
+        // --------Mrówka -> Mrówki--------
+        // if ends with k consonant, switch to i
+        if(word[word.length - 2] === 'k') {
+            this.plural.nominative =
+                this.plural.accusative =
+                    this.plural.vocative = word.substring(0, word.length - 1) + 'i';
+        }
+        // --------Kasia -> Kasie--------
+        // if ends with a ia, switch to ie
+        else if(word[word.length - 2] === 'i') {
+            this.plural.nominative =
+                this.plural.accusative =
+                    this.plural.vocative = word.substring(0, word.length - 1) + 'e';
+        }
+        else {
+            this.plural.nominative =
+                this.plural.accusative =
+                    this.plural.vocative = word.substring(0, word.length - 1) + 'y';
+        }
         // ---------------GENITIVE----------------
-        this.plural.genitive = word.substring(0, word.length - 1);
+        // --------Krowa -> Krów--------
+        // if contains an o vowel in the 2nd to last syllable, change to ó
+        let lastO = word.indexOf('o', 1);
+        if(lastO !== -1 && lastO !== word.length - 1 && (word.length - 1 - lastO) < 3) {
+            this.plural.genitive = word.substring(0, lastO) + 'ó' + word.substring(lastO + 1, word.length - 1);
+        }
+        // --------Mrówka -> Mrówek--------
+        // if ends with k consonant, switch to ek
+        else if(word[word.length - 2] === 'k') {
+            this.plural.genitive = word.substring(0, word.length - 2) + 'ek';
+        }
+        // --------Kasia -> Kaś--------
+        // if ends with a ia, switch to a soft consonant
+        else if(word[word.length - 2] === 'i') {
+            if(word[word.length - 3] === 's') {
+                this.plural.genitive = word.substring(0, word.length - 3) + 'ś';
+            }
+            else if(word[word.length - 3] === 'c') {
+                this.plural.genitive = word.substring(0, word.length - 3) + 'ć';
+            }
+            else if(word[word.length - 3] === 'z') {
+                this.plural.genitive = word.substring(0, word.length - 3) + 'ź';
+            }
+            else if(word[word.length - 3] === 'n') {
+                this.plural.genitive = word.substring(0, word.length - 3) + 'ń';
+            }
+        }
+        else {
+            this.plural.genitive = word.substring(0, word.length - 1);
+        }
         // ---------------DATIVE----------------
         this.plural.dative = word.substring(0, word.length - 1) + 'om';
         // ---------------INSTRUMENTAL----------------
@@ -117,14 +183,15 @@ class declension {
         // ---------------DATIVE----------------
         this.singular.dative = word.substring(0, word.length - 1) + 'u';
         // ---------------INSTRUMENTAL----------------
-        this.singular.instrumental = word.substring(0, word.length - 1) + 'em';
         // --------Jabłko -> Jabłkiem--------
         // if ends with ko, switch to iem
         if(word[word.length - 2] === 'k') {
             this.singular.instrumental = word.substring(0, word.length - 1) + 'iem';
         }
+        else {
+            this.singular.instrumental = word.substring(0, word.length - 1) + 'em';
+        }
         // ---------------LOCATIVE----------------
-        this.singular.locative = word.substring(0, word.length - 1) + 'ie';
         // --------Koło -> Kole--------
         // if ends with ł, switch to le
         if(word[word.length - 2] === 'ł') {
@@ -132,8 +199,11 @@ class declension {
         }
         // --------Jabłko -> Jabłku--------
         // if ends with ko, make same as dative
-        if(word[word.length - 2] === 'k') {
+        else if(word[word.length - 2] === 'k') {
             this.singular.locative = this.singular.dative;
+        }
+        else {
+            this.singular.locative = word.substring(0, word.length - 1) + 'ie';
         }
     }
 
@@ -198,7 +268,6 @@ class declension {
             this.plural.accusative =
                 this.plural.vocative = word.substring(0, word.length - 1) + 'a';
         // ---------------GENITIVE----------------
-        this.plural.genitive = word.substring(0, word.length - 1);
         // --------Koło -> Kół--------
         // if contains an o vowel in the 2nd to last syllable, change to ó
         let lastO = word.indexOf('o', 1);
@@ -207,8 +276,11 @@ class declension {
         }
         // --------Jabłko -> Jabłek--------
         // if ends with ko, switch to ek
-        if(word[word.length - 2] === 'k') {
+        else if(word[word.length - 2] === 'k') {
             this.plural.genitive = word.substring(0, word.length - 2) + 'ek';
+        }
+        else {
+            this.plural.genitive = word.substring(0, word.length - 1);
         }
         // ---------------DATIVE----------------
         this.plural.dative = word.substring(0, word.length - 1) + 'om';
@@ -225,7 +297,6 @@ class declension {
             this.plural.accusative =
                 this.plural.vocative = word.substring(0, word.length - 1) + 'a';
         // ---------------GENITIVE----------------
-        this.plural.genitive = word.substring(0, word.length - 1);
         // --------Pole -> Pól--------
         // if contains an o vowel, locate the last o
         let lastO = word.indexOf('o');
@@ -234,13 +305,16 @@ class declension {
         }
         // --------Jedzenie -> Jedzeń--------
         // if ends with nie, switch to ń
-        if(word[word.length - 3] === 'n') {
+        else if(word[word.length - 3] === 'n') {
             this.plural.genitive = word.substring(0, word.length - 3) + 'ń';
         }
         // --------Picie -> Pić--------
         // if ends with cie, switch to ć
         else if(word[word.length - 3] === 'c') {
             this.plural.genitive = word.substring(0, word.length - 3) + 'ć';
+        }
+        else {
+            this.plural.genitive = word.substring(0, word.length - 1);
         }
         // ---------------DATIVE----------------
         this.plural.dative = word.substring(0, word.length - 1) + 'om';
