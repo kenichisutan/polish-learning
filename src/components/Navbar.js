@@ -3,7 +3,7 @@ import "../styles/Navbar.css";
 
 const Navbar = () => {
     return (
-        <nav className="navbar navbar-expand-lg" data-bs-theme={"dark"}>
+        <nav className="navbar navbar-expand-lg fixed-top" data-bs-theme={"dark"}>
             <div className="container-fluid">
                 <Link to={"/"} className={"navbar-brand"}>Polish Learning</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
