@@ -31,10 +31,19 @@ const Declension = () => {
             declensions.singular.genitive = word.substring(0, word.length - 1) + 'a';
             declensions.singular.dative = word.substring(0, word.length - 1) + 'u';
             declensions.singular.instrumental = word.substring(0, word.length - 1) + 'em';
+            // if ends with ko, switch to iem
+            if(word[word.length - 2] === 'k') {
+                declensions.singular.instrumental = word.substring(0, word.length - 1) + 'iem';
+            }
+
             declensions.singular.locative = word.substring(0, word.length - 1) + 'ie';
             // if ends with ł, switch to le
             if(word[word.length - 2] === 'ł') {
                 declensions.singular.locative = word.substring(0, word.length - 2) + 'le';
+            }
+            // if ends with ko, make same as dative
+            if(word[word.length - 2] === 'k') {
+                declensions.singular.locative = declensions.singular.dative;
             }
 
             // plural
@@ -42,10 +51,15 @@ const Declension = () => {
                 declensions.plural.accusative =
                 declensions.plural.vocative = word.substring(0, word.length - 1) + 'a';
             declensions.plural.genitive = word.substring(0, word.length - 1);
-            // if contains an o vowel, locate the last o
-            let lastO = word.indexOf('o');
-            if(lastO !== -1) {
+            // if contains an o vowel outside the first, locate the second last o
+            let lastO = word.indexOf('o', 1);
+            if(lastO !== -1 && lastO !== word.length - 1) {
                 declensions.plural.genitive = word.substring(0, lastO) + 'ó' + word.substring(lastO + 1, word.length - 1);
+            }
+
+            // if ends with ko, switch to ek
+            if(word[word.length - 2] === 'k') {
+                declensions.plural.genitive = word.substring(0, word.length - 2) + 'ek';
             }
 
             declensions.plural.dative = word.substring(0, word.length - 1) + 'om';
@@ -90,7 +104,7 @@ const Declension = () => {
         }
 
         // check if last letter is ę
-        if(word[word.length - 1] === 'ę') {
+        else if(word[word.length - 1] === 'ę') {
             // check if 2nd last letter is a vowel or a consonant
             if(word[word.length - 2] === 'i') {
                 // singular
