@@ -31,6 +31,10 @@ const Declension = () => {
             declensions.singular.dative = word.substring(0, word.length - 1) + 'u';
             declensions.singular.instrumental = word.substring(0, word.length - 1) + 'em';
             declensions.singular.locative = word.substring(0, word.length - 1) + 'ie';
+            // if ends with ł, switch to le
+            if(word[word.length - 2] === 'ł') {
+                declensions.singular.locative = word.substring(0, word.length - 2) + 'le';
+            }
 
             declensions.plural.nominative =
                 declensions.plural.accusative =
