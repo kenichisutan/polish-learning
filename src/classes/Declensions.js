@@ -27,11 +27,22 @@ class declension {
         // ---------------MASCULINE----------------
 
         // ---------------FEMININE----------------
-
+        if(word[word.length - 1] === 'a') {
+            this.declineFeminine(word);
+            this.setGender("Feminine")
+        }
         // ---------------NEUTER----------------
         if(word[word.length - 1] === 'o' || word[word.length - 1] === 'e' || word[word.length - 1] === 'ę') {
             this.declineNeuter(word);
             this.setGender("Neuter")
+        }
+    }
+
+    declineFeminine(word) {
+        // decide which method to use based on the last letter
+        if(word[word.length - 1] === 'a') {
+            this.declineFeminineSingularEndingA(word);
+            this.declineFemininePluralEndingA(word);
         }
     }
 
@@ -50,6 +61,50 @@ class declension {
             this.declineNeuterPluralEndingEzOgonkiem(word);
         }
     }
+
+    // --------------- FEMININE ----------------
+    // ---------------------------------------
+    // --------------- FEMININE SINGULAR ----------------
+
+    declineFeminineSingularEndingA(word) {
+        // ---------------SINGULAR A----------------
+        // ---------------NOMINATIVE ----------------
+        this.singular.nominative = word;
+        // ---------------ACCUSATIVE----------------
+        this.singular.accusative = word.substring(0, word.length - 1) + 'ę';
+        // ---------------VOCATIVE----------------
+        this.singular.vocative = word.substring(0, word.length - 1) + 'o';
+        // ---------------GENITIVE----------------
+        this.singular.genitive = word.substring(0, word.length - 1) + 'y';
+        // ---------------DATIVE, LOC.----------------
+        this.singular.dative =
+            this.singular.locative = word.substring(0, word.length - 1) + 'ie';
+        // ---------------INSTRUMENTAL----------------
+        this.singular.instrumental = word.substring(0, word.length - 1) + 'ą';
+    }
+
+    // --------------- FEMININE PLURAL ----------------
+
+    declineFemininePluralEndingA(word) {
+        // ---------------PLURAL A----------------
+        // ---------------NOMINATIVE, ACC., VOC.----------------
+        this.plural.nominative =
+            this.plural.accusative =
+                this.plural.vocative = word.substring(0, word.length - 1) + 'y';
+        // ---------------GENITIVE----------------
+        this.plural.genitive = word.substring(0, word.length - 1);
+        // ---------------DATIVE----------------
+        this.plural.dative = word.substring(0, word.length - 1) + 'om';
+        // ---------------INSTRUMENTAL----------------
+        this.plural.instrumental = word.substring(0, word.length - 1) + 'ami';
+        // ---------------LOCATIVE----------------
+        this.plural.locative = word.substring(0, word.length - 1) + 'ach';
+    }
+
+
+    // --------------- NEUTER ----------------
+    // ---------------------------------------
+    // --------------- NEUTER SINGULAR ----------------
 
     declineNeuterSingularEndingO(word) {
         // ---------------SINGULAR O----------------
@@ -133,6 +188,8 @@ class declension {
             this.singular.locative = word + 'ciu';
         }
     }
+
+    // --------------- NEUTER PLURAL ----------------
 
     declineNeuterPluralEndingO(word) {
         // ---------------PLURAL O----------------
