@@ -160,7 +160,7 @@ const Declension = () => {
                     <input type="word" className="form-control" id="inputDeclension1" aria-describedby="declensionHelp" placeholder="Enter a word" />
                     <small id="declensionHelp" className="form-text text-muted">The entered word must be in the nominative case</small>
                 </div>
-                <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Decline</button>
+                <button type="submit" className="btn btn-outline-danger" onClick={handleSubmit}>Decline</button>
             </form>
             <br />
             {selectedDeclension && (
