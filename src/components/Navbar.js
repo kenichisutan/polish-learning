@@ -1,8 +1,9 @@
 import {Link} from "react-router-dom";
+import "../styles/Navbar.css";
 
 const Navbar = () => {
     return (
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+        <nav className="navbar navbar-expand-lg" data-bs-theme={"dark"}>
             <div className="container-fluid">
                 <Link to={"/"} className={"navbar-brand"}>Polish Learning</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -13,7 +14,9 @@ const Navbar = () => {
                 <div className="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <Link to={"/home"} className={"nav-link"}>Home</Link>
+                            {/*<button type="button" className={"btn btn-danger"}>*/}
+                                <Link to={"/home"} className={"nav-link"}>Home</Link>
+                            {/*</button>*/}
                         </li>
                         <li className="nav-item">
                             <Link to={"/dictionary"} className={"nav-link"}>Dictionary</Link>

@@ -2,3 +2,11 @@
     display: flex;
     font-weight: normal;
 }
+
+.table {
+    padding: 24px;
+}
+
+.page-content {
+    padding: 1rem;
+}

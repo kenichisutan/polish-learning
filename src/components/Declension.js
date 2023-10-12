@@ -135,7 +135,7 @@ const Declension = () => {
     }
 
     return (
-        <div>
+        <div className="page-content">
             <h1>Declension</h1>
             <br />
             <h3>Enter a word to decline</h3>
@@ -154,7 +154,9 @@ const Declension = () => {
                     <div>
                         Grammatical gender: {gender}
                     </div>
-                    {DeclensionTable({declension: selectedDeclension})}
+                    <div>
+                        {DeclensionTable({declension: selectedDeclension})}
+                    </div>
                 </div>
             )}
         </div>
