@@ -4,6 +4,7 @@ import Declensions from "../classes/Declensions";
 
 const Declension = () => {
     const [selectedDeclension, setSelectedDeclension] = useState(null);
+    const [gender, setGender] = useState("");
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -13,6 +14,7 @@ const Declension = () => {
         // determine if word is masculine, feminine, or neuter
         const lastLetter = word[word.length - 1];
         if(lastLetter === 'o' || lastLetter === 'e' || lastLetter === 'ę') {
+            setGender("Neuter");
             declineNeuter(word, declensions);
         }
 
@@ -53,6 +55,7 @@ const Declension = () => {
                 declensions.plural.accusative =
                 declensions.plural.vocative = word.substring(0, word.length - 1) + 'a';
 
+            declensions.plural.genitive = word.substring(0, word.length - 1);
             // if ends with nie, switch to ń
             if(word[word.length - 3] === 'n') {
                 declensions.plural.genitive = word.substring(0, word.length - 3) + 'ń';
@@ -78,13 +81,18 @@ const Declension = () => {
                 <div className="form-group">
                     <label htmlFor="inputDeclension1">Word</label>
                     <input type="word" className="form-control" id="inputDeclension1" aria-describedby="declensionHelp" placeholder="Enter a word" />
-                    <small id="declensionHelp" className="form-text text-muted">Test</small>
+                    <small id="declensionHelp" className="form-text text-muted">The entered word must be in the nominative case</small>
                 </div>
-                <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
+                <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Decline</button>
             </form>
             <br />
             {selectedDeclension && (
-            DeclensionTable({declension: selectedDeclension})
+                <div>
+                    <div>
+                        Grammatical gender: {gender}
+                    </div>
+                    {DeclensionTable({declension: selectedDeclension})}
+                </div>
             )}
         </div>
     )
