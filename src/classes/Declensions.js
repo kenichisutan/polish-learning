@@ -31,8 +31,12 @@ class declension {
             this.declineFeminine(word);
             this.setGender("Feminine")
         }
+        else if(word[word.length - 2] === 'ś' && word[word.length - 1] === 'ć') {
+            this.declineFeminine(word);
+            this.setGender("Feminine")
+        }
         // ---------------NEUTER----------------
-        if(word[word.length - 1] === 'o' || word[word.length - 1] === 'e' || word[word.length - 1] === 'ę') {
+        else if(word[word.length - 1] === 'o' || word[word.length - 1] === 'e' || word[word.length - 1] === 'ę') {
             this.declineNeuter(word);
             this.setGender("Neuter")
         }
@@ -43,6 +47,10 @@ class declension {
         if(word[word.length - 1] === 'a') {
             this.declineFeminineSingularEndingA(word);
             this.declineFemininePluralEndingA(word);
+        }
+        else {
+            this.declineFeminineSingularEndingNonA(word);
+            this.declineFemininePluralEndingNonA(word);
         }
     }
 
@@ -104,6 +112,36 @@ class declension {
         this.singular.instrumental = word.substring(0, word.length - 1) + 'ą';
     }
 
+    declineFeminineSingularEndingNonA(word) {
+        // ---------------SINGULAR NON-A----------------
+        // ---------------NOMINATIVE, ACC.----------------
+        this.singular.nominative =
+            this.singular.accusative = word;
+        // ---------------VOCATIVE, GEN. DAT. LOC.----------------
+        // --------Miłość -> Miłości--------
+        if(word[word.length - 1] === 'ć') {
+            this.singular.vocative =
+                this.singular.genitive =
+                    this.singular.dative =
+                        this.singular.locative = word.substring(0, word.length - 1) + 'ci';
+        }
+        else {
+            this.singular.vocative =
+                this.singular.genitive =
+                    this.singular.dative =
+                        this.singular.locative = word + 'i';
+        }
+        // ---------------INSTRUMENTAL----------------
+        // --------Miłość -> Miłością--------
+        if(word[word.length - 1] === 'ć') {
+            this.singular.instrumental = word.substring(0, word.length - 1) + 'cią';
+        }
+        else {
+            this.singular.instrumental = word + 'ą';
+        }
+
+    }
+
     // --------------- FEMININE PLURAL ----------------
 
     declineFemininePluralEndingA(word) {
@@ -155,6 +193,9 @@ class declension {
             else if(word[word.length - 3] === 'n') {
                 this.plural.genitive = word.substring(0, word.length - 3) + 'ń';
             }
+            else {
+                this.plural.genitive = word.substring(0, word.length - 1) + 'i';
+            }
         }
         else {
             this.plural.genitive = word.substring(0, word.length - 1);
@@ -165,6 +206,44 @@ class declension {
         this.plural.instrumental = word.substring(0, word.length - 1) + 'ami';
         // ---------------LOCATIVE----------------
         this.plural.locative = word.substring(0, word.length - 1) + 'ach';
+    }
+
+    declineFemininePluralEndingNonA(word) {
+        // ---------------PLURAL NON-A----------------
+        // ---------------NOMINATIVE, ACC., VOC., GEN.----------------
+        if(word[word.length - 1] === 'ć') {
+            this.plural.nominative =
+                this.plural.accusative =
+                    this.plural.vocative =
+                        this.plural.genitive = word.substring(0, word.length - 1) + 'ci';
+        }
+        else {
+            this.plural.nominative =
+            this.plural.accusative =
+                this.plural.vocative =
+                    this.plural.genitive = word + 'i';
+        }
+        // ---------------DATIVE----------------
+        if(word[word.length - 1] === "ć") {
+            this.plural.dative = word.substring(0, word.length - 1) + 'ciom';
+        }
+        else {
+            this.plural.dative = word + 'iom';
+        }
+        // ---------------INSTRUMENTAL----------------
+        if(word[word.length - 1] === "ć") {
+            this.plural.instrumental = word.substring(0, word.length - 1) + 'ciami';
+        }
+        else {
+            this.plural.instrumental = word + 'iami';
+        }
+        // ---------------LOCATIVE----------------
+        if(word[word.length - 1] === "ć") {
+            this.plural.locative = word.substring(0, word.length - 1) + 'ciach';
+        }
+        else {
+            this.plural.locative = word + 'iach';
+        }
     }
 
 
