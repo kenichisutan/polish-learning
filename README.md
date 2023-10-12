@@ -1,5 +1,5 @@
 # Polish Learning
-###### Made with the help of wonderful girlfriend from Poland <3
+<sub> Made with the help of wonderful girlfriend from Poland <3</sub>
 
 ## Description
 
