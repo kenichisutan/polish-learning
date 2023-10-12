@@ -359,6 +359,12 @@ class declension {
         else if(word[word.length - 2] === 'k') {
             this.plural.genitive = word.substring(0, word.length - 2) + 'ek';
         }
+        // --------Gówno -> Gówien--------
+        // if ends with a consonant and n before o, switch to ien
+        else if (word[word.length - 3] !== 'a' && word[word.length - 3] !== 'e' && word[word.length - 3] !== 'i'
+            && word[word.length - 3] !== 'o' && word[word.length - 3] !== 'u' && word[word.length - 2] === 'n') {
+            this.plural.genitive = word.substring(0, word.length - 2) + 'ien';
+        }
         else {
             this.plural.genitive = word.substring(0, word.length - 1);
         }
