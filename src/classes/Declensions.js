@@ -29,16 +29,16 @@ class declension {
         // ---------------FEMININE----------------
         if(word[word.length - 1] === 'a') {
             this.declineFeminine(word);
-            this.setGender("Feminine")
+            this.setGender("feminine")
         }
         else if(word[word.length - 2] === 'ś' && word[word.length - 1] === 'ć') {
             this.declineFeminine(word);
-            this.setGender("Feminine")
+            this.setGender("feminine")
         }
         // ---------------NEUTER----------------
         else if(word[word.length - 1] === 'o' || word[word.length - 1] === 'e' || word[word.length - 1] === 'ę') {
             this.declineNeuter(word);
-            this.setGender("Neuter")
+            this.setGender("neuter")
         }
     }
 
@@ -174,8 +174,9 @@ class declension {
             this.plural.genitive = word.substring(0, lastO) + 'ó' + word.substring(lastO + 1, word.length - 1);
         }
         // --------Mrówka -> Mrówek--------
-        // if ends with k consonant, switch to ek
-        else if(word[word.length - 2] === 'k') {
+        // if ends with k consonant, with another consonant before k, switch to ek
+        else if(word[word.length - 2] === 'k' && word[word.length - 3] !== 'a' && word[word.length - 3] !== 'e'
+            && word[word.length - 3] !== 'i' && word[word.length - 3] !== 'o' && word[word.length - 3] !== 'u') {
             this.plural.genitive = word.substring(0, word.length - 2) + 'ek';
         }
         // --------Kasia -> Kaś--------
