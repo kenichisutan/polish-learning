@@ -54,7 +54,7 @@ const Declension = () => {
         }
 
         // check if last letter is e
-        if(word[word.length - 1] === 'e' || word[word.length - 1] === 'ę') {
+        if(word[word.length - 1] === 'e') {
             // singular
             declensions.singular.nominative =
                 declensions.singular.accusative =
@@ -87,6 +87,50 @@ const Declension = () => {
             declensions.plural.dative = word.substring(0, word.length - 1) + 'om';
             declensions.plural.instrumental = word.substring(0, word.length - 1) + 'ami';
             declensions.plural.locative = word.substring(0, word.length - 1) + 'ach';
+        }
+
+        // check if last letter is ę
+        if(word[word.length - 1] === 'ę') {
+            // check if 2nd last letter is a vowel or a consonant
+            if(word[word.length - 2] === 'i') {
+                // singular
+                declensions.singular.nominative =
+                    declensions.singular.accusative =
+                    declensions.singular.vocative = word;
+                declensions.singular.genitive = word.substring(0, word.length - 1) + 'enia';
+                declensions.singular.dative = word.substring(0, word.length - 1) + 'eniu';
+                declensions.singular.instrumental = word.substring(0, word.length - 1) + 'eniem';
+                declensions.singular.locative = word.substring(0, word.length - 1) + 'eniu';
+
+                // plural
+                declensions.plural.nominative =
+                    declensions.plural.accusative =
+                    declensions.plural.vocative = word.substring(0, word.length - 1) + 'ona';
+                declensions.plural.genitive = word.substring(0, word.length - 1) + 'on';
+                declensions.plural.dative = word.substring(0, word.length - 1) + 'onom';
+                declensions.plural.instrumental = word.substring(0, word.length - 1) + 'onami';
+                declensions.plural.locative = word.substring(0, word.length - 1) + 'onach';
+            }
+            // does not end in i
+            else {
+                // singular
+                declensions.singular.nominative =
+                    declensions.singular.accusative =
+                    declensions.singular.vocative = word;
+                declensions.singular.genitive = word + 'cia';
+                declensions.singular.dative = word + 'ciu';
+                declensions.singular.instrumental = word + 'ciem';
+                declensions.singular.locative = word + 'ciu';
+
+                // plural
+                declensions.plural.nominative =
+                    declensions.plural.accusative =
+                    declensions.plural.vocative = word + 'ta';
+                declensions.plural.genitive = word.substring(0, word.length - 1) + 'ąt';
+                declensions.plural.dative = word + 'tom';
+                declensions.plural.instrumental = word + 'tami';
+                declensions.plural.locative = word + 'tach';
+            }
         }
     }
 
