@@ -142,10 +142,10 @@ class declension {
                 this.plural.vocative = word.substring(0, word.length - 1) + 'a';
         // ---------------GENITIVE----------------
         this.plural.genitive = word.substring(0, word.length - 1);
-        // --------Kóło -> Kól--------
-        // if contains an o vowel outside the first, locate the second last o
+        // --------Koło -> Kół--------
+        // if contains an o vowel in the 2nd to last syllable, change to ó
         let lastO = word.indexOf('o', 1);
-        if(lastO !== -1 && lastO !== word.length - 1) {
+        if(lastO !== -1 && lastO !== word.length - 1 && (word.length - 1 - lastO) < 3) {
             this.plural.genitive = word.substring(0, lastO) + 'ó' + word.substring(lastO + 1, word.length - 1);
         }
         // --------Jabłko -> Jabłek--------
