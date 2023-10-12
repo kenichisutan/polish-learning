@@ -24,6 +24,7 @@ const Declension = () => {
     function declineNeuter(word, declensions) {
         // check if last letter is o
         if(word[word.length - 1] === 'o') {
+            // singular
             declensions.singular.nominative =
                 declensions.singular.accusative =
                 declensions.singular.vocative = word;
@@ -36,10 +37,17 @@ const Declension = () => {
                 declensions.singular.locative = word.substring(0, word.length - 2) + 'le';
             }
 
+            // plural
             declensions.plural.nominative =
                 declensions.plural.accusative =
                 declensions.plural.vocative = word.substring(0, word.length - 1) + 'a';
             declensions.plural.genitive = word.substring(0, word.length - 1);
+            // if contains an o vowel, locate the last o
+            let lastO = word.indexOf('o');
+            if(lastO !== -1) {
+                declensions.plural.genitive = word.substring(0, lastO) + 'ó' + word.substring(lastO + 1, word.length - 1);
+            }
+
             declensions.plural.dative = word.substring(0, word.length - 1) + 'om';
             declensions.plural.instrumental = word.substring(0, word.length - 1) + 'ami';
             declensions.plural.locative = word.substring(0, word.length - 1) + 'ach';
@@ -47,6 +55,7 @@ const Declension = () => {
 
         // check if last letter is e
         if(word[word.length - 1] === 'e' || word[word.length - 1] === 'ę') {
+            // singular
             declensions.singular.nominative =
                 declensions.singular.accusative =
                 declensions.singular.vocative = word;
@@ -55,11 +64,17 @@ const Declension = () => {
             declensions.singular.instrumental = word.substring(0, word.length - 1) + 'em';
             declensions.singular.locative = word.substring(0, word.length - 1) + 'u';
 
+            // plural
             declensions.plural.nominative =
                 declensions.plural.accusative =
                 declensions.plural.vocative = word.substring(0, word.length - 1) + 'a';
-
             declensions.plural.genitive = word.substring(0, word.length - 1);
+            // if contains an o vowel, locate the last o
+            let lastO = word.indexOf('o');
+            if(lastO !== -1) {
+                declensions.plural.genitive = word.substring(0, lastO) + 'ó' + word.substring(lastO + 1, word.length - 1);
+            }
+
             // if ends with nie, switch to ń
             if(word[word.length - 3] === 'n') {
                 declensions.plural.genitive = word.substring(0, word.length - 3) + 'ń';
