@@ -4,16 +4,20 @@ import Declensions from "../classes/Declensions";
 
 const Declension = () => {
     const [selectedDeclension, setSelectedDeclension] = useState(null);
+    const [word, setWord] = useState("");
     const [gender, setGender] = useState("");
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault();
-        const word = document.getElementById('inputDeclension1').value;
-        let declensions = new Declensions();
+        const entry = document.getElementById('inputDeclension1').value;
+        // uncapitalize the first letter
+        const lowerCaseEntry = entry.charAt(0).toLowerCase() + entry.slice(1);
+        setWord(lowerCaseEntry);
 
-        declensions.decline(word);
-        setGender(declensions.gender)
+        const declensions = new Declensions();
+        await declensions.decline(lowerCaseEntry);
 
+        setGender(declensions.gender);
         setSelectedDeclension(declensions);
     }
 
@@ -27,18 +31,19 @@ const Declension = () => {
                 <div className="form-group">
                     <label htmlFor="inputDeclension1">Word</label>
                     <input type="word" className="form-control" id="inputDeclension1" aria-describedby="declensionHelp" placeholder="Enter a word" />
-                    <small id="declensionHelp" className="form-text text-muted">The entered word must be in the nominative case</small>
+                    <small id="declensionHelp" className="form-text text-muted">The entered word must be in the nominative case.</small>
                 </div>
                 <button type="submit" className="btn btn-outline-danger" onClick={handleSubmit}>Decline</button>
             </form>
             <br />
             {selectedDeclension && (
                 <div>
-                    <div>
-                        Grammatical gender: {gender}
+                    <div className="word-container">
+                        <p className="active-word">{word}</p>
+                        <em className="gender-text">{gender}</em>
                     </div>
                     <div>
-                        {DeclensionTable({declension: selectedDeclension})}
+                        <DeclensionTable declension={selectedDeclension} />
                     </div>
                 </div>
             )}
