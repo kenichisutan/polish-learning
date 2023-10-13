@@ -1,6 +1,7 @@
 import Navbar from "./Navbar";
 import {IntlProvider} from "react-intl";
 import React from "react";
+import LanguageSwitch from "./LanguageSwitch";
 
 const Layout = ({children}) => {
     const [locale, setLocale] = React.useState('en'); // Default to English
@@ -21,6 +22,7 @@ const Layout = ({children}) => {
                     {children}
                 </div>
             </div>
+            <LanguageSwitch changeLanguage={changeLanguage} />
         </IntlProvider>
     )
 }
