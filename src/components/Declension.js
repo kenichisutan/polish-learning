@@ -1,17 +1,27 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import DeclensionTable from "./DeclensionTable";
 import Declensions from "../classes/Declensions";
+import {useParams} from "react-router-dom";
 
 const Declension = () => {
     const [selectedDeclension, setSelectedDeclension] = useState(null);
     const [word, setWord] = useState("");
     const [gender, setGender] = useState("");
+    let { passedWord } = useParams();
 
     async function handleSubmit(event) {
         event.preventDefault();
         const entry = document.getElementById('inputDeclension1').value;
+
+        await handleDeclension(entry);
+
+        // change the url to reflect the new word
+        window.history.pushState({}, null, '/declension/' + entry);
+    }
+
+    const handleDeclension = async ( noun ) => {
         // uncapitalize the first letter
-        const lowerCaseEntry = entry.charAt(0).toLowerCase() + entry.slice(1);
+        const lowerCaseEntry = noun.charAt(0).toLowerCase() + noun.slice(1);
         setWord(lowerCaseEntry);
 
         const declensions = new Declensions();
@@ -20,6 +30,17 @@ const Declension = () => {
         setGender(declensions.gender);
         setSelectedDeclension(declensions);
     }
+
+    // check if passedWord is empty or not
+    useEffect(() => {
+        // if passedWord is not empty
+        if (passedWord) {
+            // fill the form with the passedWord
+            document.getElementById('inputDeclension1').value = passedWord;
+            // call handleDeclension with the passedWord
+            handleDeclension(passedWord);
+        }
+    }, [passedWord]);
 
     return (
         <div className="page-content">
