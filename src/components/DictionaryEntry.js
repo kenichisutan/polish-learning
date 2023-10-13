@@ -4,7 +4,7 @@ const DictionaryEntry = ({ entry }) => {
     return (
         <div>
             <div className="word-container">
-                <p className="active-word">{entry.word}</p>
+                <p className="active-word"><Link to={"/declension/" + entry.word}>{entry.word}</Link></p>
                 <em className="description-text">{entry.type}</em>
                 <em className="description-text">{entry.gender}</em>
             </div>

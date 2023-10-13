@@ -23,6 +23,7 @@ const router = (
                     <Route path="/dictionary" element={<Dictionary />} />
                     <Route path="/conjugation" element={<Conjugation />} />
                     <Route path="/declension" element={<Declension />} />
+                    <Route path="/declension/:passedWord" element={<Declension />} />
                     {/* Catch-all route for unmatched routes */}
                     <Route path="*" element={<ErrorPage />} /> {/* Catch-all route for unmatched routes */}
                 </Route>
