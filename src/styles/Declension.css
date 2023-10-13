@@ -7,20 +7,7 @@
     padding: 24px;
 }
 
-.active-word {
-    font-weight: bold;
-    font-style: italic;
-    font-size: 2.3rem;
-}
-
-.gender-text {
-    font-style: italic;
-    font-size: 1.5rem;
-    margin-top: 17px;
-}
-
 .word-container {
     display: inline-flex;
-    justify-content: space-between;
     width: 100%;
 }

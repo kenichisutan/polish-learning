@@ -38,7 +38,7 @@ const Declension = () => {
                 <div>
                     <div className="word-container">
                         <p className="active-word">{word}</p>
-                        <em className="gender-text">{gender}</em>
+                        <em className="description-text">{gender}</em>
                     </div>
                     <div>
                         <DeclensionTable declension={selectedDeclension} />

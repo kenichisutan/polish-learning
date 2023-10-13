@@ -10,3 +10,17 @@ body {
 .page-content {
     padding: 1rem;
 }
+
+.active-word {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 2.3rem;
+}
+
+.description-text {
+    font-style: italic;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    margin-left: 12px;
+    margin-right: -2px;
+}
