@@ -11,6 +11,7 @@ dictionary, conjugation tool (work in progress), and declension tool.
 #### Front-end:
 - React.js
     - [React Router](https://reactrouter.com/)
+    - [React Intl](https://formatjs.io/docs/react-intl/)
 - Bootstrap
 
 ## Installation
