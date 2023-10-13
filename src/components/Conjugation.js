@@ -1,6 +1,15 @@
-const Conjugation = () => {
-    const handleSubmit = (event) => {
+import ConjugationTable from "./ConjugationTable";
+import Conjugations from "../classes/Conjugations";
+import {useState} from "react";
 
+const Conjugation = () => {
+    const [conjugation, setConjugation] = useState(null)
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        let conjugations = new Conjugations();
+
+        setConjugation(conjugations)
     }
 
     return (
@@ -16,6 +25,9 @@ const Conjugation = () => {
                 <button type="submit" className="btn btn-outline-danger" onClick={handleSubmit}>Conjugate</button>
             </form>
             <br />
+            {conjugation && (
+                <ConjugationTable conjugation={conjugation} />
+            )}
         </div>
     )
 }
