@@ -7,9 +7,13 @@ const Conjugation = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        let conjugations = new Conjugations();
 
-        setConjugation(conjugations)
+        const entry = document.getElementById('inputConjugation1').value;
+
+        let conjugations = new Conjugations();
+        conjugations.conjugate(entry)
+
+        setConjugation(conjugations);
     }
 
     return (

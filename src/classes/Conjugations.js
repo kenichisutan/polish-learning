@@ -60,6 +60,14 @@ class conjugations {
             }
         }
     }
+
+    conjugate(verb) {
+        this.conjugatePresent(verb);
+    }
+
+    conjugatePresent(verb) {
+        
+    }
 }
 
 export default conjugations;
