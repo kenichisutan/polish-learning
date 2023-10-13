@@ -1,7 +1,8 @@
 const Conjugation = () => {
     return (
-        <div>
-            <h1>Conjugation</h1>
+        <div className="page-content">
+            <h1>Declension</h1>
+            <br />
         </div>
     )
 }
