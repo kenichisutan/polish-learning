@@ -1,9 +1,11 @@
 {
     "page_title": "Polish Learning",
+
     "navbar_home": "Home",
     "navbar_dictionary": "Dictionary",
     "navbar_conjugation": "Conjugation",
     "navbar_declension": "Declension",
+
     "dictionary_form_label": "Enter a word to search",
     "dictionary_form_help": "Enter a Polish word above.",
     "dictionary_form_button": "Search",
@@ -24,9 +26,11 @@
     "dictionary_search_masculine": "Masculine",
     "dictionary_search_feminine": "Feminine",
     "dictionary_search_neuter": "Neuter",
+
     "conjugation_form_label": "Enter a word to conjugate",
     "conjugation_form_help": "The entered word must be a verb in the infinitive form.",
     "conjugation_form_button": "Conjugate",
+
     "declension_form_label": "Enter a word to decline",
     "declension_form_help": "The entered word must be a noun in the nominative case.",
     "declension_form_button": "Decline",

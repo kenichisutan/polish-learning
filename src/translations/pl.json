@@ -1,10 +1,10 @@
 {
   "page_title": "Polish Learning",
 
-  "navbar_home": "Home",
+  "navbar_home": "Strona Główna",
   "navbar_dictionary": "Słownik",
-  "navbar_conjugation": "Conjugation",
-  "navbar_declension": "Declension",
+  "navbar_conjugation": "Konjugacja",
+  "navbar_declension": "Deklinacja",
 
   "dictionary_form_label": "Enter a word to search",
   "dictionary_form_help": "Enter a Polish word above.",
