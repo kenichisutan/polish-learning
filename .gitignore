@@ -23,4 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 *.xml
 
-/src/styles/custom_bootstrap.css
+/src/styling/custom_bootstrap.css
+/src/styling/custom_bootstrap.css.map
