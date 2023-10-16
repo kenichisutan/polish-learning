@@ -32,8 +32,13 @@ To begin using the website, follow these steps:
     ```bash
    npm install
     ```
+   
+4. Compile bootstrap CSS through SASS:
+    ```bash
+    sass .\src\scss\custom.scss .\src\styling\custom_bootstrap.css
+    ```
 
-4. Start the development server:
+5. Start the development server:
     ```bash
     npm start
      ```
